@@ -20,14 +20,14 @@ class Post extends Model
 	 * 
 	 * @var string
 	 */
-	 protected static $usersModel = 'App/Models/Users';
+	 protected static $usersModel = 'App\Models\Users';
 	 
 	 /**
 	 * The Eloquent comments model name 
 	 * 
 	 * @var string
 	 */
-	 protected static $coomentsModel = 'App/Models/Comment';
+	 protected static $coomentsModel = 'App\Models\Comment';
 	 
 	  /**
 	 * Returns the user relationship

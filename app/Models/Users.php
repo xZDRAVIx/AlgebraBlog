@@ -1,8 +1,8 @@
 <?php
 
-namespace App/Models;
+namespace App\Models;
 
-use Cartalyst/Sentinel/Users/EloquentUser;
+use Cartalyst\Sentinel\Users\EloquentUser;
 
 class users extends EloquentUser
 {
