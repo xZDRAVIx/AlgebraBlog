@@ -96,7 +96,18 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user_id = Sentinel::getUser()->id;
+		$post 	 = Post::find($id);
+		
+		if($user_id == $post->user_id) {
+			return view ('admin.posts.edit' , ['post' => $post]);
+		} else {
+			$message = session()->flash('warning', 'You have no permission to edit this post');
+			return redirect()->route('admin.posts.index')->withFlashMessage($message);
+		}
+		
+			
+		
     }
 
     /**
