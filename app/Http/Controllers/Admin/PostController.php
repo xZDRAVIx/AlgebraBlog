@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Sentinel;
+
 
 
 class PostController extends Controller
@@ -96,15 +98,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $user_id = Sentinel::getUser()->id;
+       
 		$post 	 = Post::find($id);
 		
-		if($user_id == $post->user_id) {
+		
 			return view ('admin.posts.edit' , ['post' => $post]);
-		} else {
-			$message = session()->flash('warning', 'You have no permission to edit this post');
-			return redirect()->route('admin.posts.index')->withFlashMessage($message);
-		}
+	
 		
 			
 		
@@ -117,9 +116,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
-        //
+        $post = Post::find($id);
+		
+		$input = $request->except(['_token']);
+		
+		$data = array(
+			'title'		=> trim($input['title']),
+			'content'	=> $input['content']
+		);
+		
+		$post->updatePost($data);
+		
+		$message = session()->flash('success', 'you have successfully updated a post with ID '.$id.' .');
+		
+		return redirect()->route('admin.posts.index')->withFlashMessage($message);
     }
 
     /**
