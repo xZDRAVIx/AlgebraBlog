@@ -18,14 +18,14 @@ class Comment extends Model
 	 * 
 	 * @var string
 	 */
-	 protected static $usersModel = 'App/Models/Users';
+	 protected static $usersModel = 'App\Models\Users';
 	 
 	 /**
 	 * The Eloquent posts model name 
 	 * 
 	 * @var string
 	 */
-	 protected static $postsModel = 'App/Models/Post';
+	 protected static $postsModel = 'App\Models\Post';
 	 
 	  /**
 	 * Returns the user relationship
